@@ -287,19 +287,19 @@ of "High" (default), "Both" or "Low".</p></dd>
 <span class="r-in"><span class="va">fx</span> <span class="op">&lt;-</span> <span class="fu"><a href="dgp.spq.html">dgp.spq</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">p</span>, listw <span class="op">=</span> <span class="va">listw</span>, rho <span class="op">=</span> <span class="va">rho</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">scan</span> <span class="op">&lt;-</span> <span class="fu">scan.test</span><span class="op">(</span>fx <span class="op">=</span> <span class="va">fx</span>, nsim <span class="op">=</span> <span class="fl">9</span>, case <span class="op">=</span> <span class="st">"A"</span>, nv <span class="op">=</span> <span class="fl">30</span>, coor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">cx</span>,<span class="va">cy</span><span class="op">)</span>,</span>
 <span class="r-in">distr <span class="op">=</span> <span class="st">"bernoulli"</span>,windows<span class="op">=</span><span class="st">"elliptic"</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>A total of 18 clusters has the same value of the statistic. Report as MLC only the first</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>A total of 6 clusters has the same value of the statistic. Report as MLC only the first</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Scan test. Distribution: bernoulli</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 13.545, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 11.355, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: High</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total observations in the MLC =   19.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC =        9.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC =       19.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total observations in the MLC =   16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC =        8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC =       16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="scan.test-6.png" alt="" width="700" height="433"></span>
@@ -320,11 +320,11 @@ of "High" (default), "Both" or "Low".</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Scan test. Distribution: multinomial</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 9.7752, p-value = 0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 10.273, p-value = 0.05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 A     B     C Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect 9.38  9.24  9.38  28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 1.00 10.00 17.00  28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 A    B     C Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect 4.69 4.62  4.69  14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 0.00 2.00 12.00  14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="scan.test-7.png" alt="" width="700" height="433"></span>
