@@ -148,10 +148,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 255.86, df = 9, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 264.56, df = 9, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -161,10 +161,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 68.425, df = 81, p-value = 0.8392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 85.698, df = 81, p-value = 0.3393</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -180,18 +180,17 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Characteristics of m-surrounding:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of m-surrounding (R): 87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of m-surrounding (R): 89</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Length of m-surrounding (m): 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number no-symbolized observations: 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number no-symbolized observations: 15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of no-symbolized observations:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 27 28 32 33 35 43 53 67 83 90 92 96 115 150 194 195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 26 28 44 51 52 57 66 68 91 92 112 167 181 192</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of the degree overlaping:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     There are 1 m-surrounding that have intersection with 0 m-surrounding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     There are 16 m-surrounding that have intersection with 1 m-surrounding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     There are 70 m-surrounding that have intersection with 2 m-surrounding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean degree of overlaping: 1.7931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     There are 14 m-surrounding that have intersection with 1 m-surrounding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     There are 75 m-surrounding that have intersection with 2 m-surrounding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean degree of overlaping: 1.8427</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">control</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dtmaxknn <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">qmap</span> <span class="op">&lt;-</span> <span class="fu">Q.map.test</span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula</span>, data <span class="op">=</span> <span class="va">dt</span>, coor <span class="op">=</span> <span class="va">x</span>, m <span class="op">=</span> <span class="va">m</span>, r <span class="op">=</span> <span class="va">r</span>,</span>
@@ -204,10 +203,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: permutations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 3.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 3.44</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 279.58, df = 26, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 290.05, df = 26, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -217,10 +216,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: permutations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 3.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 3.44</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 212.23, df = 676, p-value = 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 263.42, df = 676, p-value = 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -242,7 +241,7 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 9.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 292.02, df = 9, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 291.94, df = 9, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -255,7 +254,7 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 9.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 71.624, df = 81, p-value = 0.7625</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 89.348, df = 81, p-value = 0.2462</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -273,10 +272,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 255.86, df = 9, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QE = 264.56, df = 9, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -286,10 +285,10 @@ the algorithm to compute the m-surroundings.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Symbols type: combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	Ratio Symbolized observations/Num symbols = 8.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  QY1 and QY2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 68.425, df = 81, p-value = 0.8392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> QI = 85.698, df = 81, p-value = 0.3393</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
