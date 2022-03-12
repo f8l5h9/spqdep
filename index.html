@@ -56,10 +56,14 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><a href="https://zenodo.org/badge/latestdoi/454438353" class="external-link"><img src="https://zenodo.org/badge/454438353.svg" alt="DOI"></a></p>
-<div class="section level1">
-<div class="page-header"><h1 id="spqdep">spqdep<a class="anchor" aria-label="anchor" href="#spqdep"></a>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="spqdata">spqdata<a class="anchor" aria-label="anchor" href="#spqdata"></a>
 </h1></div>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+</div>
+<div class="section level1">
+<h1 id="spqdata-1">spqdata<a class="anchor" aria-label="anchor" href="#spqdata-1"></a>
+</h1>
 <!-- badges: start -->
 
 <p>The goal of spqdep is to provide tools for the analysis of spatial qualitative data.</p>
@@ -68,11 +72,11 @@
 </h2>
 <p>You can install the released version of spqdata from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("spqdep")</span></code></pre></div>
+<code class="sourceCode R"><span class="co">#install.packages("spqdata")</span></code></pre></div>
 <p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="co"># devtools::install_github("f8l5h9/spqdep")</span></code></pre></div>
+<span class="co">#devtools::install_github("f8l5h9/spqdata")</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="abstract">Abstract<a class="anchor" aria-label="anchor" href="#abstract"></a>
@@ -83,6 +87,109 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>This is a basic example which shows you how to solve a common problem</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://f8l5h9.github.io/spqdep/">spqdep</a></span><span class="op">)</span>
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span>
+<span class="va">cx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
+<span class="va">cy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
+<span class="va">listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html" class="external-link">knearneigh</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">cx</span>,<span class="va">cy</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">0.9</span>
+<span class="va">control</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>seedinit <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span>
+<span class="va">fx</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dgp.spq.html">dgp.spq</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">p</span>, listw <span class="op">=</span> <span class="va">listw</span>, rho <span class="op">=</span> <span class="va">rho</span>,control <span class="op">=</span> <span class="va">control</span><span class="op">)</span>
+<span class="va">scan</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/scan.test.html">scan.test</a></span><span class="op">(</span>fx <span class="op">=</span> <span class="va">fx</span>, nsim <span class="op">=</span> <span class="fl">199</span>, case <span class="op">=</span> <span class="st">"A"</span>, nv <span class="op">=</span> <span class="fl">100</span>, coor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">cx</span>,<span class="va">cy</span><span class="op">)</span>,
+distr <span class="op">=</span> <span class="st">"bernoulli"</span>, windows<span class="op">=</span><span class="st">"elliptic"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt;  Scan test. Distribution: bernoulli</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; data:  fx</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; scan-loglik = 12.727, p-value &lt; 2.2e-16</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; alternative hypothesis: High</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;                                         </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; Total observations in the MLC =    21.00</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; Expected cases in the MLC =       103.85</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; Observed cases in the MLC =        17.00</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt; Summary of data:</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; Distribution....................: bernoulli</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Type of cluster (alternative)...: High</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; Number of locations.............: 200</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; Cathegory case..................: A</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; Total number of observations....: 67</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; Names of cathegories............: A B</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; Total per category..............: 67 133</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; Percent per category............: 0.34 0.66</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; ---------------------------------</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; </span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; Scan statistic: Most Likely Cluster</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; Total observations in the MLC........: 21</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; Percent per category inside cluster..: 0.81 0.19</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 12.7268</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; p-value..............................: 0</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; </span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; IDs of cluster detect:</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; Location IDs included...:  110 112 1 193 165 95 89 91 59 35 85 78 37 51 152 19 83 32 30 133 105</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; ---------------------------------</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; </span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; </span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt; Secondary Cluster. Number 1 </span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; Total observations in secondary cluster.:  5 </span></span>
+<span id="cb6-28"><a href="#cb6-28"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#&gt; Percent per category inside cluster..: 0 1</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 4.4561</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; p-value..............................: 0.75</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt; Location IDs included................:  62 69 75 186 98</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt; </span></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co">#&gt; </span></span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co">#&gt; Secondary Cluster. Number 2 </span></span>
+<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#&gt; Total observations in secondary cluster.:  4 </span></span>
+<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#&gt; Percent per category inside cluster..: 0 1</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 3.3265</span></span>
+<span id="cb6-42"><a href="#cb6-42"></a><span class="co">#&gt; p-value..............................: 0.975</span></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#&gt; Location IDs included................:  116 124 117 185</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="co">#&gt; </span></span>
+<span id="cb6-45"><a href="#cb6-45"></a><span class="co">#&gt; </span></span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="co">#&gt; Secondary Cluster. Number 3 </span></span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#&gt; Total observations in secondary cluster.:  6 </span></span>
+<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#&gt; Percent per category inside cluster..: 0.17 0.83</span></span>
+<span id="cb6-51"><a href="#cb6-51"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 2.343</span></span>
+<span id="cb6-52"><a href="#cb6-52"></a><span class="co">#&gt; p-value..............................: 0.995</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a><span class="co">#&gt; Location IDs included................:  38 164 43 8 88 79</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a><span class="co">#&gt; </span></span>
+<span id="cb6-55"><a href="#cb6-55"></a><span class="co">#&gt; </span></span>
+<span id="cb6-56"><a href="#cb6-56"></a><span class="co">#&gt; Secondary Cluster. Number 4 </span></span>
+<span id="cb6-57"><a href="#cb6-57"></a><span class="co">#&gt; Total observations in secondary cluster.:  6 </span></span>
+<span id="cb6-58"><a href="#cb6-58"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-59"><a href="#cb6-59"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-60"><a href="#cb6-60"></a><span class="co">#&gt; Percent per category inside cluster..: 0.67 0.33</span></span>
+<span id="cb6-61"><a href="#cb6-61"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 2.343</span></span>
+<span id="cb6-62"><a href="#cb6-62"></a><span class="co">#&gt; p-value..............................: 0.995</span></span>
+<span id="cb6-63"><a href="#cb6-63"></a><span class="co">#&gt; Location IDs included................:  44 191 70 160 11 84</span></span>
+<span id="cb6-64"><a href="#cb6-64"></a><span class="co">#&gt; </span></span>
+<span id="cb6-65"><a href="#cb6-65"></a><span class="co">#&gt; </span></span>
+<span id="cb6-66"><a href="#cb6-66"></a><span class="co">#&gt; Secondary Cluster. Number 5 </span></span>
+<span id="cb6-67"><a href="#cb6-67"></a><span class="co">#&gt; Total observations in secondary cluster.:  6 </span></span>
+<span id="cb6-68"><a href="#cb6-68"></a><span class="co">#&gt; Names of cathegories.................: A B</span></span>
+<span id="cb6-69"><a href="#cb6-69"></a><span class="co">#&gt; Percent per category total...........: 0.34 0.66</span></span>
+<span id="cb6-70"><a href="#cb6-70"></a><span class="co">#&gt; Percent per category inside cluster..: 0.67 0.33</span></span>
+<span id="cb6-71"><a href="#cb6-71"></a><span class="co">#&gt; Value of statisitic (loglik ratio)...: 2.343</span></span>
+<span id="cb6-72"><a href="#cb6-72"></a><span class="co">#&gt; p-value..............................: 0.995</span></span>
+<span id="cb6-73"><a href="#cb6-73"></a><span class="co">#&gt; Location IDs included................:  129 177 162 56 31 77</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
 </div>
 </div>
 

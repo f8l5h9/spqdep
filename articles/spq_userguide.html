@@ -69,7 +69,7 @@
                         <h4 data-toc-skip class="author">Manuel Ruiz, Technical University of Cartagena (Spain) <br><br><br>
 </h4>
             
-            <h4 data-toc-skip class="date">2022-03-11 <br>
+            <h4 data-toc-skip class="date">2022-03-12 <br>
 </h4>
       
       
@@ -695,8 +695,8 @@
 <td colspan="9" class="gt_group_heading">V1 - standard-permutations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">180.94</td>
-<td class="gt_row gt_right">0.25000</td>
+<td class="gt_row gt_right">169.91</td>
+<td class="gt_row gt_right">0.32600</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -709,8 +709,8 @@
 <td colspan="9" class="gt_group_heading">V1 - equivalent-combinations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">35.66</td>
-<td class="gt_row gt_right">0.21300</td>
+<td class="gt_row gt_right">26.26</td>
+<td class="gt_row gt_right">0.26100</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -1159,7 +1159,7 @@
 <td colspan="11" class="gt_group_heading">V1 - standard-permutations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">116.42</td>
+<td class="gt_row gt_right">79.36</td>
 <td class="gt_row gt_right">26</td>
 <td class="gt_row gt_right">0.00000</td>
 <td class="gt_row gt_right">3</td>
@@ -1175,9 +1175,9 @@
 <td colspan="11" class="gt_group_heading">V1 - equivalent-combinations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">16.34</td>
+<td class="gt_row gt_right">21.83</td>
 <td class="gt_row gt_right">9</td>
-<td class="gt_row gt_right">0.06018</td>
+<td class="gt_row gt_right">0.00945</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -1274,7 +1274,7 @@
 <span class="co">##  Ratio Symbolized observations/Num symbols = 4.6</span>
 <span class="co">## </span>
 <span class="co">## data:  QY1 and QY2</span>
-<span class="co">## QE = 138.36, df = 9, p-value &lt; 2.2e-16</span>
+<span class="co">## QE = 142.75, df = 9, p-value &lt; 2.2e-16</span>
 <span class="co">## alternative hypothesis: two.sided</span></code></pre>
 <ul>
 <li>The  method obtains the distribution of symbols with the confidence intervals specified by the user.</li>
@@ -1315,11 +1315,11 @@
 <span class="co">##  version</span>
 <span class="co">## </span>
 <span class="co">## data:  mxf</span>
-<span class="co">## sp.runs test = -2.0224, p-value = 0.04314</span>
+<span class="co">## sp.runs test = -3.3124, p-value = 0.0009249</span>
 <span class="co">## alternative hypothesis: two.sided</span>
 <span class="co">## sample estimates:</span>
 <span class="co">##          Total runs     Mean total runs Variance total runs </span>
-<span class="co">##            262.0000            285.5152            135.1986</span></code></pre>
+<span class="co">##            247.0000            285.5152            135.1986</span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></code></pre></div>
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
@@ -1347,104 +1347,104 @@
 <pre><code><span class="co">##     runs.i      E.i     Std.i    z.value    p.value</span>
 <span class="co">## 1        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 2        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 3        2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 4        3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 3        3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 4        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 5        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 6        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 6        2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 7        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 8        2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 9        2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 10       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 11       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 8        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 9        4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 10       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 11       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 12       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 13       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 14       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 15       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 16       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 13       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 14       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 15       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 16       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 17       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 18       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 19       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 18       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 19       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 20       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 21       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 22       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 23       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 24       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 25       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 26       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 27       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 28       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 29       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 30       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 31       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 32       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 33       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 21       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 22       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 23       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 24       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 25       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 26       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 27       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 28       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 29       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 30       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 31       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 32       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 33       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 34       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 35       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 36       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 37       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 38       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 39       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 36       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 37       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 38       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 39       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 40       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 41       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 42       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 43       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 44       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 42       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 43       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 44       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 45       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 46       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 46       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 47       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 48       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 49       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 50       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 51       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 48       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 49       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 50       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 51       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 52       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 53       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 54       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 54       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 55       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 56       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 57       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 58       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 59       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 60       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 60       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 61       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 62       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 63       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 62       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 63       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 64       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 65       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 66       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 67       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 68       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 66       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 67       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 68       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 69       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 70       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 71       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 70       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 71       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 72       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 73       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 74       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 73       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 74       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 75       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 76       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 77       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 78       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 79       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 78       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 79       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 80       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 81       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 82       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 83       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 84       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 85       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 86       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 87       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 88       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 89       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 84       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 85       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 86       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 87       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 88       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 89       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 90       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 91       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 92       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 93       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 91       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 92       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 93       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 94       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 95       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 96       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 95       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 96       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 97       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 98       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 99       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 100      2 2.855152 0.8722689 -0.9803761 0.16345026</span></code></pre>
+<span class="co">## 99       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 100      1 2.855152 0.8722689 -2.1268116 0.01671787</span></code></pre>
 <ul>
 <li>The  method identify the localization with values of local test significant.</li>
 </ul>
@@ -2670,7 +2670,7 @@
 <p>Kanaroglou, Pavlos. 2016. <em>Spatial Analysis in Health Geography</em>. Routledge. <a href="https://doi.org/10.4324/9781315610252" class="external-link">https://doi.org/10.4324/9781315610252</a>.</p>
 </div>
 <div id="ref-lopez2012">
-<p>López, Fernando A, and Antonio Páez. 2012. “Distribution-Free Inference for Q (M) Based on Permutational Bootstrapping: An Application to the Spatial Co-Location Pattern of Firms in Madrid.” <em>Estadı́stica Española</em> 54 (177): 135–56. <a href="https://doi.org/http://metodos.upct.es/falopez/Publications/Lopez%20and%20Paez%202012%20EE.pdf" class="external-link">https://doi.org/http://metodos.upct.es/falopez/Publications/Lopez%20and%20Paez%202012%20EE.pdf</a>.</p>
+<p>López, Fernando A, and Antonio Páez. 2012. “Distribution-Free Inference for Q (M) Based on Permutational Bootstrapping: An Application to the Spatial Co-Location Pattern of Firms in Madrid.” <em>Estadı́stica Española</em> 54 (177): 135–56.</p>
 </div>
 <div id="ref-paez2021">
 <p>Paez, Antonio, Fernando A Lopez, Tatiane Menezes, Renata Cavalcanti, and Maira Galdino da Rocha Pitta. 2021. “A Spatio-Temporal Analysis of the Environmental Correlates of Covid-19 Incidence in Spain.” <em>Geographical Analysis</em> 53 (3): 397–421. <a href="https://doi.org/10.1111/gean.12241" class="external-link">https://doi.org/10.1111/gean.12241</a>.</p>
