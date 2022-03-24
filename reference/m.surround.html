@@ -85,28 +85,32 @@ Default = "Euclidean".</p></dd>
     <h2 id="control-arguments">Control arguments<a class="anchor" aria-label="anchor" href="#control-arguments"></a></h2>
     
 
-<p></p><table class="table table"><tr><td><code>initobs</code></td><td>Initial observation to begin the
-      m-surrounding process. Default = 1.</td></tr><tr><td><code>dtmaxabs</code></td><td>Threshold of distance (in absolute
+<p></p><ul><li><p><code>initobs</code>: Initial observation to begin the
+      m-surrounding process. Default = 1.</p></li>
+<li><p><code>dtmaxabs</code>: Threshold of distance (in absolute
       value) to prune the m-surroundings. Any m-surrounding
       exceeding the threshold is excluded.
       If <code>dtmaxabs</code> = 0 there is no exclusion of m-surroundings.
-      Default = 0.</td></tr><tr><td><code>dtmaxpc</code></td><td>Threshold of distance (as a percentage
+      Default = 0.</p></li>
+<li><p><code>dtmaxpc</code>: Threshold of distance (as a percentage
       of the maximum distance between observations) to prune the m-surroundings. Any m-surrounding
       exceeding the threshold is excluded.
       Example if <code>dtmaxpc</code> = 0.1 the m-surrounding exceeding
       the 10<!-- % of the maximum distance between observations are excluded. -->
       If <code>dtmaxpc</code> = 0 there is no exclusion of m-surroundings.
-      Default = 0.</td></tr><tr><td><code>dtmaxknn</code></td><td>Eliminate m-surroundings where some
+      Default = 0.</p></li>
+<li><p><code>dtmaxknn</code>: Eliminate m-surroundings where some
       of the elements are not among the closest
       knn (k-nearest-neighbors).
       Example, if <code>dtmaxknn</code> = 4 exclude m-surroundings
       where some of the elements are not between the 4 closest.
-      Default <code>dtmaxknn</code> = 0 (no exclusion)</td></tr></table></div>
+      Default <code>dtmaxknn</code> = 0 (no exclusion)</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     
-<ul><li><p>Ruiz M, López FA, A Páez. (2010). <em>Testing for spatial association of qualitative
-    data using symbolic dynamics</em>. Journal of Geographical Systems. 12 (3) 281-309</p></li>
+<ul><li><p>Ruiz M, López FA, A Páez. (2010). Testing for spatial association of qualitative
+    data using symbolic dynamics. <em>Journal of Geographical Systems</em>. 12 (3) 281-309</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>

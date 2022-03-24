@@ -79,6 +79,35 @@ of "High" (default), "Both" or "Low".</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A object of the <em>htest</em></p><table class="table table"><tr><td><code>data.name</code></td><td>a character string giving the names of the data.</td></tr><tr><td><code>statistic</code></td><td>Value of the similarity test</td></tr><tr><td><code>N</code></td><td>total number of observations.</td></tr><tr><td><code>Zmlc</code></td><td>Elements in the Most Likelihood Cluster.</td></tr><tr><td><code>alternative</code></td><td>a character string describing the alternative hypothesis.</td></tr><tr><td><code>p.value</code></td><td>p-value of the similarity test</td></tr><tr><td><code>similiarity.mc</code></td><td>values of the similarity test in each permutation.</td></tr></table></div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>This testing approach for spatial independence that extends some of the properties
+ of the join count statistic. The premise of the tests is similar to the join count
+ statistic in that they use the concept of similarity between neighbouring spatial
+ entities (Dacey 1968; Cliff and Ord 1973, 1981). However, it differs by taking
+ into consideration the number of joins belonging locally to each spatial unit,
+ rather than the total number of joins in the entire spatial system. The approach
+ proposed here is applicable to spatial and network contiguity structures, and
+ the number of neighbors belonging to observations need not be constant.<br></p>
+<p>We define an equivalence relation \(\sim\) in the set of locations S. An equivalence
+ relation satisfies the following properties:<br><br>
+ Reflexive: \(s_i \sim s_i\) for all \(s_i \in S\),<br>
+ Symmetric: If \(s_i \sim s_j\), then \(s_j \sim s_i\) for all \(s_i,\ s_j \in S\) and<br>
+ Transitive: If \(s_i \sim s_j\) and \(s_j \sim s_k\), then \(s_i \sim s_k\)
+ for all \(s_i, \  s_j, \ s_k \in S\)<br><br>
+ We call the relation \(\sim\) a similarity relation. Then, the null hypothesis that
+ we are interested in is
+ $$H_0: \{X_s\}_{s \in S} \ \ is\ \ iid$$
+ Assume that, under the null hypothesis, \(P(s_i \sim s_{ji}) = p_i\) for all
+ \(s_{ji} \in N_{s_i}\). <br>
+ Define<br>
+ $$I_{ij}=1 \ \ if \ \ s_i \sim s_{ji} \ \ ; 0 \ \ otherwise$$<br>
+ Then, for a fixed degree d and for all location si with degree d, the variable d<br>
+ $$\Lambda_{(d,i)}=\sum_{j=1}^d I_{ij}$$
+ gives the number of nearest neighbours to si that are similar to si.
+ Therefore, under the null hypothesis, \(H_0\), \(\Lambda(d,i)\) follows a binomial
+ distribution \(B(d, p_i)\).</p>
+    </div>
+    <div class="section level2">
     <h2 id="control-arguments">Control arguments<a class="anchor" aria-label="anchor" href="#control-arguments"></a></h2>
     
 
@@ -118,7 +147,7 @@ of "High" (default), "Both" or "Low".</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Distribution: asymptotic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Similarity-test = 1.1571, p-value = 0.2472</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Similarity-test = 1.8171, p-value = 0.06921</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"></span>
