@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">spqdep</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,38 @@ Used when *data* is not a spatial object</p></dd>
     <p>An list of two object of the class <code>htest</code>. Each element of the list return the:</p><table class="table table"><tr><td><code>data.name</code></td><td>a character string giving the names of the data.</td></tr><tr><td><code>statistic</code></td><td>Value of the Q test</td></tr><tr><td><code>N</code></td><td>total number of observations.</td></tr><tr><td><code>R</code></td><td>total number of symbolized observations.</td></tr><tr><td><code>m</code></td><td>length m-surrounding.</td></tr><tr><td><code>r</code></td><td>degree of overlapping.</td></tr><tr><td><code>df</code></td><td>degree of freedom.</td></tr><tr><td><code>distr</code></td><td>type of distribution used to get the significance of the Q test.</td></tr><tr><td><code>type</code></td><td>type of symbols.</td></tr></table></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Let \(\{X_s\}_{s \in R}\) be a discrete spatial process and m be a fixed embedding
+    <p>The Q(m) statistic was introduced by Ruiz et al. (2010) as a tool to explore geographical
+co-location/co-occurrence of qualitative data. Consider a spatial variable X which is the
+result of a qualitative process with a set number of categorical outcomes \(a_j\) (j=1,...,k).
+The spatial variable is observed at a set of fixed locations indexed by their coordinates
+\(s_i\) (i=1,..., N), so that at each location si where an event is observed,
+\(X_i\) takes one of the possible values \(a_j\).<br></p>
+<p>Since the observations are georeferenced, a spatial embedding protocol can be devised
+to assess the spatial property of co-location. Let us define, for an observation at
+a specified location, say \(s_0\), a surrounding of size m, called an m-surrounding.<br>
+The m-surrounding is the set of m-1 nearest neighbours from the perspective
+of location \(s_0\). In the case of distance ties, a secondary criterion can be
+invoked based on direction.<br>
+Once that an embedding protocol is adopted and the elements of the m-surrounding
+for location \(s_0\) have been determined, a string can be obtained that collects
+the elements of the local neighborhood (the m-1 nearest neighbors) of the observation
+at \(s_0\). The m-surrounding can then be represented in the following way:</p>
+<p>$$X_m(s_0)=(X_{s_0},X_{s_1},...X_{s_{m-1}})$$
+Since each observation Xs takes one of k possible values, and there are m observations in
+the m-surrounding, there are exactly k possible unique ways in which those values can
+co-locate. This is the number of permutations with replacement.<br>
+For instance, if k=2
+(e.g. the possible outcomes are a1=0 and a2=1) and m=3, the following eight unique
+patterns of co-location are possible (the number of symbols is \(n_{\sigma}\)=8): 0,0,0, 1,0,0,
+0,1,0, 0,0,1, 1,1,0, 1,0,1, 0,1,1, and 1,1,1. Each unique co-locationtype
+can be denoted in a convenient way by means of a symbol \(\sigma_i\) \((i=1, 2,...,k^m)\). It follows
+that each site can be uniquely associated with a specific symbol, in a process termed
+symbolization. In this way, we say that a location s is of type \(\sigma_i\) if and only if \(X_m(s)=\sigma_i\).<br>
+Equivalent symbols (see Páez, et al. 2012) can be obtained by counting the number of
+occurrences of each category within an m-surrounding. This surrenders some
+topological information (ordering within the m-surrounding is lost) in favor of a more
+compact set of symbols, since the number of combinations with replacement.<br><br><strong>Definition of Q(m) statistic</strong><br><br>
+Let \(\{X_s\}_{s \in R}\) be a discrete spatial process and m be a fixed embedding
 dimension. The statistic Q testing the null hypothesis:<br><br>
 \(H_0:\{X_s\}_{s \in R}\) is spatially independent, against any other alternative.<br><br>
 For a fixed \(m \geq 2\), the relative frequency of symbols can be used to define the symbolic
@@ -157,7 +188,7 @@ that the combinatorial possibilities can very quickly become unmanageable.
  repetition. <br></p>
     </div>
     <div class="section level2">
-    <h2 id="selection-of-m-surrounding-with-controlled-degree-of-overlapping">Selection of m-surrounding with Controlled Degree of Overlapping<a class="anchor" aria-label="anchor" href="#selection-of-m-surrounding-with-controlled-degree-of-overlapping"></a></h2>
+    <h2 id="selection-of-m-surrounding-with-controlled-degree-of-overlapping-r-">Selection of m-surrounding with Controlled Degree of Overlapping (r)<a class="anchor" aria-label="anchor" href="#selection-of-m-surrounding-with-controlled-degree-of-overlapping-r-"></a></h2>
     
 
 <p>To select S locations for the analysis, coordinates are selected such that
@@ -168,17 +199,26 @@ that the combinatorial possibilities can very quickly become unmanageable.
  m-surroundings are allowed to have in common.<br>
  Let \( \{s_1^0, s_2^0,...,s_{m-1}^0 \}\) be the set of nearest neighbours
  to \(s_0\), where the \(s_i^0\) are ordered by distance to \(s_0\), or angle in the case of ties.
- Let us call \(s_1 = s_{m-r-1}^0\) and define . Take the set of
- nearest neighbours to \(s_1\), namely, in the
- set of locations. <br></p>
+ Let us call \(s_1 = s_{m-r-1}^0\) and define \( A_0 = \{s_0,s_0^1,...,s^0_{m-r-2} \}  \) . Take the set of
+ nearest neighbours to \(s_1\), namely, \( \{ s_1^1, s_2^1,...,s^1_{m-1} \} \) in the
+ set of locations \(S \setminus A_0 \) and define \(s_2=s^1_{m-r-1} \). Nor for i&gt;1 we define
+ \(s_i = s^{i-1}_{m-r-1}\) where \(s^{i-1}_{m-r-1}\) is in the ser of nearest neighbors to \(s_{i-1}\),
+  \( \{ s_1^{i-1},s_2^{i-1},...,s_{m-1}^{i-1} \} \) ,of the set \(S \setminus \{ \cup_{j=0}^{i-1} A_j \} \). Continue this process while there are locations to symbolize.<br></p>
+    </div>
+    <div class="section level2">
+    <h2 id="selection-of-m-surroundings-for-bootstrap-distribution">Selection of m-surroundings for bootstrap distribution<a class="anchor" aria-label="anchor" href="#selection-of-m-surroundings-for-bootstrap-distribution"></a></h2>
+    
+
+<p>The bootstrapped-based testing can provide an advantage since overlapping between
+m-surroundings is not a consideration, and the full sample can be used.<br></p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     
-<ul><li><p>Ruiz M, López FA, A Páez. (2010). <em>Testing for spatial association of qualitative
-    data using symbolic dynamics</em>. Journal of Geographical Systems. 12 (3) 281-309</p></li>
-<li><p>López, FA, and A Páez. (2012). <em>Distribution-free inference for Q(m) based on permutational bootstrapping: an application
-    to the spatial co-location pattern of firms in Madrid</em> Estadística Española, 177, 135-156.</p></li>
+<ul><li><p>Ruiz M, López FA, A Páez. (2010). Testing for spatial association of qualitative
+    data using symbolic dynamics. <em>Journal of Geographical Systems</em>. 12 (3) 281-309</p></li>
+<li><p>López, FA, and A Páez. (2012). Distribution-free inference for Q(m) based on permutational bootstrapping: an application
+    to the spatial co-location pattern of firms in Madrid <em>Estadística Española</em>, 177, 135-156.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -630,9 +670,9 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_group_heading_row"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;td colspan="11" class="gt_group_heading"&gt;V1 - standard-permutations&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;25.07&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;42.43&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;26&lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.51480&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.02218&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;200&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
@@ -644,9 +684,9 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_group_heading_row"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;td colspan="11" class="gt_group_heading"&gt;V1 - equivalent-combinations&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;11.97&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;21.41&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;9&lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.21474&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.01093&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;200&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
@@ -674,7 +714,7 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	permutations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  Variable V1  m =  3  r =  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Qp = 25.074, df = 26, p-value = 0.5148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Qp = 42.425, df = 26, p-value = 0.02218</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
@@ -683,7 +723,7 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  Variable V1  m =  3  r =  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Qc = 11.975, df = 9, p-value = 0.2147</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Qc = 21.415, df = 9, p-value = 0.01093</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -1120,8 +1160,8 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_group_heading_row"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;td colspan="9" class="gt_group_heading"&gt;V1 - standard-permutations&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;36.96&lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.18000&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;47.26&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.04600&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;200&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
@@ -1132,8 +1172,8 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_group_heading_row"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;td colspan="9" class="gt_group_heading"&gt;V1 - equivalent-combinations&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/tr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;27.91&lt;/td&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.06700&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_right"&gt;39.15&lt;/td&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;0.00500&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;200&lt;/td&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;td class="gt_row gt_right"&gt;3&lt;/td&gt;</span>
@@ -1159,7 +1199,7 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Qp (mc distrib.) for symbolization based on permutations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  Variable V1  m =  3  r =  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Qp = 36.964, df = NA, p-value = 0.18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Qp = 47.263, df = NA, p-value = 0.046</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
@@ -1167,7 +1207,7 @@ that the combinatorial possibilities can very quickly become unmanageable.
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Qc (mc distrib.) for symbolization based on combinations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  Variable V1  m =  3  r =  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Qc = 27.907, df = NA, p-value = 0.067</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Qc = 39.153, df = NA, p-value = 0.005</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
