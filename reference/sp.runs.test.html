@@ -87,18 +87,65 @@ Default value is NULL to don`t get CI of number of runs.</p></dd>
     <p>The order of the neighbourhoods (\(m_i-environments\)) is critical to obtain the test. <br>
 To obtain the number of runs observed in each \(m_i-environment\), each element must be associated
 with a set of neighbours ordered by proximity.
-Three kinds of lists can be included to identify \(m_i-environments\):</p>
-<table class="table table"><tr><td><code>knn</code></td><td>Objects of the class knn that consider the neighbours in order of proximity.</td></tr><tr><td><code>nb</code></td><td>If the neighbours are obtained from an sf object, the code internally
+Three kinds of lists can be included to identify \(m_i-environments\):<br></p>
+<ul><li><p><code>knn</code>: Objects of the class knn that consider the neighbours in order of proximity.<br></p></li>
+<li><p><code>nb</code>: If the neighbours are obtained from an sf object, the code internally
     will call the function <code><a href="nb2nb_order.html">nb2nb_order</a></code> it will order them in order
-    of proximity of the centroids.</td></tr><tr><td><code>matrix</code></td><td>If a object of matrix class based in the inverse of the distance in introduced
+    of proximity of the centroids.<br></p></li>
+<li><p><code>matrix</code>: If a object of matrix class based in the inverse of the distance in introduced
     as argument, the function <code><a href="nb2nb_order.html">nb2nb_order</a></code> will also be called internally
-    to transform the object the class matrix to a matrix of the class nb with ordered neighbours.</td></tr></table><p>Two alternative sets of arguments can be included in this function to compute the spatial runs test:</p>
-<p></p><table class="table table"><tr><td><code>Option 1</code></td><td>A factor (fx) and a list of neighborhood (<code>listw</code>) of the class knn.</td></tr><tr><td><code>Option 2</code></td><td>A sf object (data) and formula to specify the factor. A list of neighborhood (listw)</td></tr></table></div>
+    to transform the object the class matrix to a matrix of the class nb with ordered neighbours. <br></p></li>
+</ul><p>Two alternative sets of arguments can be included in this function to compute the spatial runs test:</p>
+<p></p><table class="table table"><tr><td><code>Option 1</code></td><td>A factor (fx) and a list of neighborhood (<code>listw</code>) of the class knn.</td></tr><tr><td><code>Option 2</code></td><td>A sf object (data) and formula to specify the factor. A list of neighbourhood (listw)</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="definition-of-spatial-run">Definition of spatial run<a class="anchor" aria-label="anchor" href="#definition-of-spatial-run"></a></h2>
+    
+
+
+<p>In this section define the concepts of spatial encoding and runs, and construct the main statistics necessary
+for testing spatial homogeneity of categorical variables. In order to develop a general theoretical setting,
+let us consider \(\{X_s\}_{s \in S}\)  to be the categorical spatial process of interest with Q different
+categories, where S is a set of coordinates.<br></p>
+<p><strong>Spatial encoding:</strong>
+For a location \(s \in S\) denote by \(N_s = \{s_1,s_2 ...,s_{n_s}\}\)  the set of neighbours according
+to the interaction scheme W, which are ordered from lesser to higher Euclidean distance with respect to location s.<br>
+The sequence as \(X_{s_i} , X_{s_i+1},...,, X_{s_i+r}\) its elements have the same value (or are identified by the same class)
+is called a <strong>spatial run</strong> at location s of length r.<br></p>
+    </div>
+    <div class="section level2">
+    <h2 id="spatial-run-statistic">Spatial run statistic<a class="anchor" aria-label="anchor" href="#spatial-run-statistic"></a></h2>
+    
+
+
+<p>The total number of runs is defined as:<br>
+$$SR^Q=n+\sum_{s \in S}\sum_{j=1}^{n_s}I_j^s$$<br>
+where \(I_j^s = 1 \ if \ X_{s_j-1} \neq X_{s_j} \ and 0 \ otherwise\) for \(j=1,2,...,n_s\)<br>
+Following result by the Central Limit Theorem, the asymtotical distribution of \(SR^Q\) is:<br>
+$$SR^Q = N(\mu_{SR^Q},\sigma_{SR^Q})$$</p>
+<p>In the one-tailed case, we must distinguish the lower-tailed test and the upper-tailed, which are associated
+ with homogeneity and heterogeneity respectively. In the case of the lower-tailed test,
+ the following hypotheses are used:<br></p>
+<p>\(H_0:\{X_s\}_{s \in S}\) is i.i.d.<br>
+\(H_1\): The spatial distribution of the values of the categorical variable is more homogeneous than under the null hypothesis (according to the fixed association scheme).
+In the upper-tailed test, the following hypotheses are used:<br></p>
+<p>\(H_0:\{X_s\}_{s \in S}\) is i.i.d.<br>
+\(H_1\): The spatial distribution of the values of the categorical variable is more
+heterogeneous than under the null hypothesis (according to the fixed association scheme).<br></p>
+<p>These hypotheses provide a decision rule regarding the degree of homogeneity in the spatial distribution
+of the values of the spatial categorical random variable.<br></p>
+    </div>
     <div class="section level2">
     <h2 id="control-arguments">Control arguments<a class="anchor" aria-label="anchor" href="#control-arguments"></a></h2>
     
 
 <p></p><table class="table table"><tr><td><code>seedinit</code></td><td>Numerical value for the seed (only for boot version). Default value seedinit=123</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    
+<ul><li><p>Ruiz, M., López, F., and Páez, A. (2021).
+    A test for global and local homogeneity of categorical data based on spatial runs.
+      <em>Working paper</em>.</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="local.sp.runs.test.html">local.sp.runs.test</a></code>, <code><a href="dgp.spq.html">dgp.spq</a></code>, <code><a href="Q.test.html">Q.test</a></code>,</p></div>
@@ -106,10 +153,7 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     
-<table class="table table"><tr><td>Fernando López</td><td><a href="mailto:fernando.lopez@upct.es">fernando.lopez@upct.es</a></td></tr><tr><td>Román Mínguez</td><td><a href="mailto:roman.minguez@uclm.es">roman.minguez@uclm.es</a></td></tr><tr><td>Antonio Páez</td><td><a href="mailto:paezha@gmail.com">paezha@gmail.com</a></td></tr><tr><td>Manuel Ruiz</td><td><a href="mailto:manuel.ruiz@upct.es">manuel.ruiz@upct.es</a></td></tr></table><p>@references</p><ul><li><p>Ruiz, M., López, F., and Páez, A. (2021).
-    A test for global and local homogeneity of categorical data based on spatial runs.
-      <em>Working paper</em>.</p></li>
-</ul></div>
+<table class="table table"><tr><td>Fernando López</td><td><a href="mailto:fernando.lopez@upct.es">fernando.lopez@upct.es</a></td></tr><tr><td>Román Mínguez</td><td><a href="mailto:roman.minguez@uclm.es">roman.minguez@uclm.es</a></td></tr><tr><td>Antonio Páez</td><td><a href="mailto:paezha@gmail.com">paezha@gmail.com</a></td></tr><tr><td>Manuel Ruiz</td><td><a href="mailto:manuel.ruiz@upct.es">manuel.ruiz@upct.es</a></td></tr></table></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -131,11 +175,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -4.8721, p-value = 1.104e-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -2.4486, p-value = 0.01434</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            231.0000            285.5152            125.2005 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            258.0000            285.5152            126.2688 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-1.png" alt="" width="700" height="433"></span>
@@ -148,11 +192,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -4.8721, p-value &lt; 2.2e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -2.4486, p-value = 0.01333</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  231.0000                  286.3846                  116.6536 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  258.0000                  285.5318                  144.9679 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-2.png" alt="" width="700" height="433"></span>
@@ -228,11 +272,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -2.216, p-value = 0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -2.216, p-value = 0.0225</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  359.0000                  384.9198                  160.9735 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  359.0000                  385.7820                  149.1307 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-6.png" alt="" width="700" height="433"></span>
@@ -304,11 +348,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 1.1651, p-value = 0.244</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.44363, p-value = 0.6573</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            700.0000            656.5455           1390.9461 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            640.0000            656.5455           1390.9461 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-10.png" alt="" width="700" height="433"></span>
@@ -320,11 +364,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 1.1651, p-value = 0.244</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.44363, p-value = 0.6573</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            700.0000            656.5455           1390.9461 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            640.0000            656.5455           1390.9461 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-11.png" alt="" width="700" height="433"></span>
@@ -336,11 +380,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 1.1651, p-value = 0.2867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.44363, p-value = 0.6533</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  700.0000                  636.2977                 1423.2030 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  640.0000                  637.3077                 1303.3949 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-12.png" alt="" width="700" height="433"></span>
@@ -379,11 +423,11 @@ Three kinds of lists can be included to identify \(m_i-environments\):</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -6.2809, p-value = 0.003333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -5.5774, p-value = 0.01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  2364.000                  2540.137                  3115.555 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  2401.000                  2542.207                  2909.863 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="sp.runs.test-14.png" alt="" width="700" height="433"></span>
