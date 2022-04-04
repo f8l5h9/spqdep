@@ -473,13 +473,13 @@ The theoretical distribution of the statistic under the null hypothesis is not k
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Scan test. Distribution: bernoulli</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 7.3332, p-value = 0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 6.3286, p-value = 0.11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: High</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total observations in the MLC =   39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC =       19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC =       29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total observations in the MLC =   27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC =       28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC =       21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="scan.test-6.png" alt="" width="700" height="433"></span>
@@ -499,11 +499,11 @@ The theoretical distribution of the statistic under the null hypothesis is not k
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Scan test. Distribution: multinomial</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 8.1965, p-value = 0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 14.062, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 A    B     C Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect 4.02 3.96  4.02  12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 0.00 2.00 10.00  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  A     B    C Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect  9.71  9.57 9.71  29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 18.00 11.00 0.00  29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="scan.test-7.png" alt="" width="700" height="433"></span>
@@ -525,11 +525,11 @@ The theoretical distribution of the statistic under the null hypothesis is not k
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Scan test. Distribution: multinomial</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 8.1965, p-value = 0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scan-loglik = 14.062, p-value &lt; 2.2e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 A    B     C Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect 4.02 3.96  4.02  12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 0.00 2.00 10.00  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  A     B    C Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.expect  9.71  9.57 9.71  29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cases.observ 18.00 11.00 0.00  29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">scan</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -542,65 +542,65 @@ The theoretical distribution of the statistic under the null hypothesis is not k
 <span class="r-out co"><span class="r-pr">#&gt;</span> Percent cases per category......: 0.34 0.33 0.34</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Scan statistic:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in the MLC.........: 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in the MLC.........: 29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories...........: A B C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC......: 4.02 3.96 4.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC......: 0 2 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statistic (loglik ratio)....: 8.1965</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value........................: 0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Observed cases in the MLC......: 9.71 9.57 9.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Expected cases in the MLC......: 18 11 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statistic (loglik ratio)....: 14.0619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value........................: 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> IDs of cluster detect:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included.....:  84 194 137 55 158 86 85 174 181 187 170 117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included.....:  179 126 104 156 147 197 60 5 81 131 161 177 49 102 193 64 139 150 172 180 151 127 26 47 33 111 169 94 53</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  27 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.33 0.37 0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 8.8317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  151 33 172 3 166 60 131 105 91 100 126 81 49 53 15 144 169 156 159 186 177 197 147 83 118 179 111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  15 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.27 0.33 0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 6.6503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  73 31 134 196 11 45 17 120 24 87 66 28 63 101 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.67 0.17 0.17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.6747</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  138 93 125 25 68 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  12 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.17 0.33 0.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.1236</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  143 107 116 74 109 135 14 175 97 18 16 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.33 0.33 0.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.7835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  141 51 65 106 1 34 57 157 19 123 198 56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  13 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.31 0.38 0.31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.15 0.23 0.62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.7376</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  157 77 141 51 58 70 155 65 115 1 106 162 34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  86 117 55 181 170 194 178 85 191 84 174 182 75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.45 0.18 0.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 5.1319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  43 165 95 113 160 90 119 168 176 132 123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.25 0.5 0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 4.9603</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  144 15 91 186 118 3 20 159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Secondary Scan statistic. Number 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total cases in secondary cluster......:  5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Names of cathegories.................: A B C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category total...........: 0.34 0.33 0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent per category inside cluster..: 0.6 0.2 0.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value of statisitic (loglik ratio)....: 4.5181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> p-value.........................: 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location IDs included..................:  120 87 24 101 38</span>
 <span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">scan</span>, sf <span class="op">=</span> <span class="va">provinces_spain</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="scan.test-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="co"># }</span></span>

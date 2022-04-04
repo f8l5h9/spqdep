@@ -69,7 +69,7 @@
                         <h4 data-toc-skip class="author">Manuel Ruiz, Technical University of Cartagena (Spain) <br><br><br>
 </h4>
             
-            <h4 data-toc-skip class="date">2022-04-03 <br>
+            <h4 data-toc-skip class="date">2022-04-04 <br>
 </h4>
       
       
@@ -78,6 +78,10 @@
 
     
     
+<style>
+body {
+text-align: justify}
+</style>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/" class="external-link">spdep</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/" class="external-link">spatialreg</a></span><span class="op">)</span>
@@ -86,34 +90,37 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>This guide show the functionalities of the <strong>spqdep</strong> package to test spatial dependence on qualitative dataset.</p>
+<p>This guide show the functionalities of the <strong>spqdep</strong> package to test spatial dependence on qualitative datasets.</p>
+<p>Global and local statistics give information about the spatial structure of the spatial dataset.</p>
 <div class="section level3">
 <h3 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h3>
-<p>Two data sets will be used as examples in this guide:</p>
+<p>Three data sets will be used as examples in this guide:</p>
 <ul>
-<li><p><strong>provinces_spain</strong>: The division of Spain into provinces. It is a multypolygon geometry with isolated provinces (islands without neighbouring provinces). See by example Paez et al. 2021.</p></li>
-<li><p><strong>FastFood.sf</strong>: The data set used as example in <span class="citation">Ruiz, López, and Páez (<a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span>. It is a geometry of points.</p></li>
+<li><p><strong>provinces_spain</strong>: The division of Spain into provinces. It is a multypolygon geometry with isolated provinces (Canary and Balearic islands without neighbouring provinces). See by example Paez et al. 2021.</p></li>
+<li><p><strong>FastFood.sf</strong>: A simple feature (sf) dataframe containing the locations of a selection of fast food restaurants in the city of Toronto, Canada (data are from 2008). The data set used as example in <span class="citation">Ruiz, López, and Páez (<a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span>. It is a geometry of points.</p></li>
+<li><p><strong>Boots.sf</strong>: A simple features object. A square regular lattice 16x16 from Fig. 3.3 in <span class="citation">Upton and Fingleton (<a href="#ref-upton1985" role="doc-biblioref">1985</a>)</span>. In this figure, the cells coded black/white correspond to quadrats where the perennial shrub Atriplex hymenelytra is present/absent in a sample area in Death Valley, California.</p></li>
 </ul>
 <p>The package is install like usual and the dataset can be loaded using the next code</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://f8l5h9.github.io/spqdep/">spqdep</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"provinces_spain"</span>, package <span class="op">=</span> <span class="st">"spqdep"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"FastFood.sf"</span>, package <span class="op">=</span> <span class="st">"spqdep"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"FastFood.sf"</span>, package <span class="op">=</span> <span class="st">"spqdep"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Boots.sf"</span>, package <span class="op">=</span> <span class="st">"spqdep"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="data-generating-process-dgp">Data Generating Process (DGP)<a class="anchor" aria-label="anchor" href="#data-generating-process-dgp"></a>
+<h3 id="data-generating-process">Data Generating Process<a class="anchor" aria-label="anchor" href="#data-generating-process"></a>
 </h3>
-<p>Additional to the two dataset available in the <strong>spqdep</strong> package. The user can generate structured spatial processes using the  function. The DGP generate with this function defined in <span class="citation">Ruiz, López, and Páez (<a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span>.</p>
-<p>The next code show how to generate a random process on a set of random points localized in a square 1x1. In this case, the connectivity criteria is based on the 4 near neighborhood.</p>
+<p>Additional to the datasets available in the <strong>spqdep</strong> package. The user can generate structured spatial processes using the  function. The DGP generate with this function defined in <span class="citation">Ruiz, López, and Páez (<a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p>The next code show how to generate a random process on a set of random points localized in a square <span class="math inline">\(1 \times 1\)</span>. In this case, the connectivity criteria is based on the 4 nearest neighbourhood.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 <span class="va">cx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
 <span class="va">cy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>
 <span class="va">coor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">cx</span>,<span class="va">cy</span><span class="op">)</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span>
-<span class="va">rho</span> <span class="op">=</span> <span class="fl">0.5</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span> <span class="co"># proportion of classes</span>
+<span class="va">rho</span> <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># level of spatial structure</span>
 <span class="va">listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html" class="external-link">nb2listw</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html" class="external-link">knn2nb</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html" class="external-link">knearneigh</a></span><span class="op">(</span><span class="va">coor</span>, k <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">fx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgp.spq.html">dgp.spq</a></span><span class="op">(</span>list <span class="op">=</span> <span class="va">listw</span>, p <span class="op">=</span> <span class="va">p</span>, rho <span class="op">=</span> <span class="va">rho</span><span class="op">)</span></code></pre></div>
 <p>The next plot show the qualitative spatial process defined.</p>
@@ -122,37 +129,63 @@
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="dgp_example.png"></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="q-test">Q-test<a class="anchor" aria-label="anchor" href="#q-test"></a>
 </h2>
+<p>The Q-test is a simple, consistent, and powerful statistic for qualitative spatial independence that we develop using concepts from <strong>symbolic dynamics</strong> and <strong>symbolic entropy</strong>. The Q test can be used to detect, given a spatial distribution of events, patterns of spatial association of qualitative variables in a wide variety of settings.</p>
 <ul>
 <li><p>The Q-test <span class="citation">(Ruiz, López, and Páez <a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span> is based on m-surroundings</p></li>
 <li><p>Before to apply the Q-test it is necessary define a set of the m-surroundings</p></li>
 <li><p>The  function generate a set of m-surrounding.</p></li>
 <li><p>The user can tuning several parameters to obtain a congruent set of m-surroundings.</p></li>
 </ul>
+<p>The Q(m) statistic was introduced by <span class="citation">Ruiz, López, and Páez (<a href="#ref-ruiz2010" role="doc-biblioref">2010</a>)</span> as a tool to explore geographical co-location/co-occurrence of qualitative data. Consider a spatial variable X which is the result of a qualitative process with a set number of categorical outcomes <span class="math inline">\(a_j\)</span> (j=1,…,k). The spatial variable is observed at a set of fixed locations indexed by their coordinates <span class="math inline">\(s_i\)</span> (i=1,…, N), so that at each location si where an event is observed, <span class="math inline">\(X_i\)</span> takes one of the possible values <span class="math inline">\(a_j\)</span>.</p>
+<p>Since the observations are georeferenced, a spatial embedding protocol can be devised to assess the spatial property of co-location. Let us define, for an observation at a specified location, say <span class="math inline">\(s_0\)</span>, a surrounding of size m, called an m-surrounding. The m-surrounding is the set of m-1 nearest neighbours from the perspective of location <span class="math inline">\(s_0\)</span>. In the case of distance ties, a secondary criterion can be invoked based on direction.</p>
+<p>Once that an embedding protocol is adopted and the elements of the m-surrounding for location <span class="math inline">\(s_0\)</span> have been determined, a string can be obtained that collects the elements of the local neighborhood (the m-1 nearest neighbors) of the observation at <span class="math inline">\(s_0\)</span>. The m-surrounding can then be represented in the following way:</p>
+<p><span class="math display">\[X_m(s_0)=(X_{s_0},X_{s_1},...X_{s_{m-1}})\]</span></p>
+<p>Since each observation Xs takes one of k possible values, and there are m observations in the m-surrounding, there are exactly k possible unique ways in which those values can co-locate. This is the number of permutations with replacement. For instance, if k=2 (e.g. the possible outcomes are a1=0 and a2=1) and m=3, the following eight unique patterns of co-location are possible (the number of symbols is <span class="math inline">\(n_{\sigma}\)</span>=8): {0,0,0}, {1,0,0}, {0,1,0}, {0,0,1}, {1,1,0}, {1,0,1}, {0,1,1}, and {1,1,1}. Each unique co-locationtype can be denoted in a convenient way by means of a symbol <span class="math inline">\(\sigma_i\)</span> <span class="math inline">\((i=1, 2,...,k^m)\)</span>. It follows that each site can be uniquely associated with a specific symbol, in a process termed symbolization. In this way, we say that a location s is of type <span class="math inline">\(\sigma_i\)</span> if and only if <span class="math inline">\(X_m(s)=\sigma_i\)</span>. Equivalent symbols (see Páez, et al. 2012) can be obtained by counting the number of occurrences of each category within an m-surrounding. This surrenders some topological information (ordering within the m-surrounding is lost) in favor of a more compact set of symbols, since the number of combinations with replacement.</p>
+<p><strong>Definition of Q(m) statistic</strong></p>
+<p>Let <span class="math inline">\(\{X_s\}_{s \in R}\)</span> be a discrete spatial process and m be a fixed embedding dimension. The statistic Q(m) testing the null hypothesis:</p>
+<p><span class="math inline">\(H_0:\{X_s\}_{s \in R}\)</span> is spatially independent, against any other alternative.</p>
+<p>For a fixed <span class="math inline">\(m \geq 2\)</span>, the relative frequency of symbols can be used to define the symbolic entropy of the spatial process as the Shanon entropy of the distinct symbols:</p>
+<p><span class="math display">\[h(m) = - \sum_j p_{\sigma_j}ln(p_{\sigma_j})\]</span></p>
+<p>where</p>
+<p><span class="math display">\[p_{\sigma_j}={ n_{\sigma_j} \over R}\]</span></p>
+<p>with <span class="math inline">\(n_{\sigma_j}\)</span> is simply the number of times that the symbol <span class="math inline">\(\sigma_j\)</span> is observed and R the number of symbolized locations.</p>
+<p>The entropy function is bounded between <span class="math inline">\(0 &lt; h (m) \leq \eta\)</span>.</p>
+<p>The Q statistic is essentially a likelihood ratio test between the symbolic entropy of the observed pattern and the entropy of the system under the null hypothesis of a random spatial sequence:</p>
+<p><span class="math display">\[Q(m)=2R(\eta-h(m))\]</span></p>
+<p>with <span class="math inline">\(\eta = ln(k^m)\)</span>. The statistic is asymptotically $^2} distributed with degrees of freedom equal to the number of symbols minus one.</p>
 <div class="section level3">
 <h3 id="m-surroundings">m-surroundings<a class="anchor" aria-label="anchor" href="#m-surroundings"></a>
 </h3>
 <ul>
 <li><p><strong>m.surround()</strong> is the function to generate m-surroundings.</p></li>
 <li><p>The output of this function is a object of the class <strong>m_surr</strong></p></li>
-<li><p>Using the  method the user can explore the coherence of m-surroundings.</p></li>
+<li><p>Using the  method the user can explore the coherence of m-surroundings because some times the algorithm can generate degenerate m-surrounding with so far observations with the degree of overlapping is low. The recommendation is use the control options.</p></li>
 </ul>
-<p>By example. the next code obtain m-surroundings with length m = 3 and degree of overlapping r = 1:</p>
+<p><strong>The overlapping degree</strong></p>
+<p>The performance of the statistic can become compromised due to the overlap of m-surroundings. To meet all key approximations for testing, the overlap is controlled by letting the maximum number of symbolized locations S be less than the actual number of observations N,</p>
+<p>When r = 0 (i.e., no overlap is allowed) we exactly have binomial random variables. Note that the maximum number of locations that can be symbolized with an overlapping degree r is</p>
+<p><span class="math display">\[R = { [{{|S|−m} \over {m-r}} ]} + 1\]</span>,</p>
+<p>where [x] denotes the integer part of a real number x, and |S| the cardinality of the set S. Therefore, reducing the degree of overlap also implies that the number of symbolized locations will be smaller than the number of observations in the sample</p>
+<p>By example, the next code obtain m-surroundings with length m = 3 and degree of overlapping r = 1:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m</span> <span class="op">=</span> <span class="fl">3</span>
 <span class="va">r</span> <span class="op">=</span> <span class="fl">1</span>
 <span class="va">mh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/m.surround.html">m.surround</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">cx</span>,<span class="va">cy</span><span class="op">)</span>, m <span class="op">=</span> <span class="va">m</span>, r <span class="op">=</span> <span class="va">r</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">mh</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "m_surr" "list"</span></code></pre>
-</div>
-<div class="section level3">
-<h3 id="methods-for-the-m_surr-class">Methods for the m_surr class<a class="anchor" aria-label="anchor" href="#methods-for-the-m_surr-class"></a>
-</h3>
+<div class="section level4">
+<h4 id="methods-for-the-m_surr-class">Methods for the m_surr class<a class="anchor" aria-label="anchor" href="#methods-for-the-m_surr-class"></a>
+</h4>
 <p>The <strong>spqdep</strong> have three methods that can be apply to this class: ,  and </p>
+<div class="section level5">
+<h5 id="the-print-method">The print method<a class="anchor" aria-label="anchor" href="#the-print-method"></a>
+</h5>
 <ul>
 <li> list the m-surroundings</li>
 </ul>
@@ -208,6 +241,10 @@
 <span class="co">## [47,]   96   40   56</span>
 <span class="co">## [48,]   99   10   48</span>
 <span class="co">## [49,]  100   66   52</span></code></pre>
+</div>
+<div class="section level5">
+<h5 id="the-summary-method">The summary method<a class="anchor" aria-label="anchor" href="#the-summary-method"></a>
+</h5>
 <ul>
 <li> generate a summary of some characteristics of the m-surroundings</li>
 </ul>
@@ -227,6 +264,10 @@
 <span class="co">##     There are 2 m-surrounding that have intersection with 1 m-surrounding</span>
 <span class="co">##     There are 47 m-surrounding that have intersection with 2 m-surrounding</span>
 <span class="co">## Mean degree of overlaping: 1.9592</span></code></pre>
+</div>
+<div class="section level5">
+<h5 id="the-plot-method">The plot method<a class="anchor" aria-label="anchor" href="#the-plot-method"></a>
+</h5>
 <ul>
 <li> show the spatial structure of the m-surroundings</li>
 </ul>
@@ -242,6 +283,8 @@
 <span class="va">mh.prune</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/m.surround.html">m.surround</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">coor</span>, m <span class="op">=</span> <span class="va">m</span>, r <span class="op">=</span> <span class="va">r</span>, control <span class="op">=</span> <span class="va">control</span><span class="op">)</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mh.prune</span><span class="op">)</span></code></pre></div>
 <p><img src="spq_userguide_files/figure-html/plot%20mh%20prune-1.png" width="700"></p>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="the-q-test">The Q-test<a class="anchor" aria-label="anchor" href="#the-q-test"></a>
@@ -695,8 +738,8 @@
 <td colspan="9" class="gt_group_heading">V1 - standard-permutations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">74.90</td>
-<td class="gt_row gt_right">0.00000</td>
+<td class="gt_row gt_right">39.72</td>
+<td class="gt_row gt_right">0.17200</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -709,8 +752,8 @@
 <td colspan="9" class="gt_group_heading">V1 - equivalent-combinations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">61.34</td>
-<td class="gt_row gt_right">0.00000</td>
+<td class="gt_row gt_right">27.84</td>
+<td class="gt_row gt_right">0.08200</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -722,10 +765,9 @@
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level3">
-<h3 id="methods-for-the-spqtest-class">Methods for the spqtest class<a class="anchor" aria-label="anchor" href="#methods-for-the-spqtest-class"></a>
-</h3>
+<div class="section level4">
+<h4 id="methods-for-the-spqtest-class">Methods for the spqtest class<a class="anchor" aria-label="anchor" href="#methods-for-the-spqtest-class"></a>
+</h4>
 <p>A summary can be apply to an object of the spqtest class:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">q.test</span><span class="op">)</span></code></pre></div>
@@ -1159,9 +1201,9 @@
 <td colspan="11" class="gt_group_heading">V1 - standard-permutations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">37.41</td>
+<td class="gt_row gt_right">39.03</td>
 <td class="gt_row gt_right">26</td>
-<td class="gt_row gt_right">0.06861</td>
+<td class="gt_row gt_right">0.04845</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -1175,9 +1217,9 @@
 <td colspan="11" class="gt_group_heading">V1 - equivalent-combinations</td>
     </tr>
 <tr class="gt_row_group_first">
-<td class="gt_row gt_right">18.66</td>
+<td class="gt_row gt_right">13.79</td>
 <td class="gt_row gt_right">9</td>
-<td class="gt_row gt_right">0.02829</td>
+<td class="gt_row gt_right">0.12991</td>
 <td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">100</td>
 <td class="gt_row gt_right">3</td>
@@ -1198,6 +1240,7 @@
 <pre><code><span class="co">## </span>
 <span class="co">## [[2]]</span></code></pre>
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="the-q-test-using-a-sf-object">The Q-test using a sf object<a class="anchor" aria-label="anchor" href="#the-q-test-using-a-sf-object"></a>
@@ -1227,15 +1270,12 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="maps-comparison--the-qmap-test">Maps comparison. The QMap-test<a class="anchor" aria-label="anchor" href="#maps-comparison--the-qmap-test"></a>
+<h2 id="qmap-test">QMap-test<a class="anchor" aria-label="anchor" href="#qmap-test"></a>
 </h2>
 <ul>
 <li>The function  obtain the test for maps comparison publish in <span class="citation">Ruiz, López, and Páez (<a href="#ref-Ruiz2012b" role="doc-biblioref">2012</a>)</span>
 </li>
 </ul>
-<div class="section level3">
-<h3 id="the-qmap-test">The QMap test<a class="anchor" aria-label="anchor" href="#the-qmap-test"></a>
-</h3>
 <p>The next code generate two qualitative spatial process with different levels of spatial dependence and the Q-Map is apply.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span>
@@ -1256,10 +1296,9 @@
 <li>The output of  id an object of the classes <strong>qmap</strong> and <strong>htest</strong>
 </li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="methods-for-qmap-class">Methods for qmap class<a class="anchor" aria-label="anchor" href="#methods-for-qmap-class"></a>
-</h3>
+<div class="section level4">
+<h4 id="methods-for-qmap-class">Methods for qmap class<a class="anchor" aria-label="anchor" href="#methods-for-qmap-class"></a>
+</h4>
 <ul>
 <li>The qmap object is a list with two elements. Each element is an object of the class <strong>htext</strong>
 </li>
@@ -1274,7 +1313,7 @@
 <span class="co">##  Ratio Symbolized observations/Num symbols = 4.6</span>
 <span class="co">## </span>
 <span class="co">## data:  QY1 and QY2</span>
-<span class="co">## QE = 137.97, df = 9, p-value &lt; 2.2e-16</span>
+<span class="co">## QE = 136.28, df = 9, p-value &lt; 2.2e-16</span>
 <span class="co">## alternative hypothesis: two.sided</span></code></pre>
 <ul>
 <li>The  method obtains the distribution of symbols with the confidence intervals specified by the user.</li>
@@ -1285,9 +1324,24 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="runs-tests">Runs tests<a class="anchor" aria-label="anchor" href="#runs-tests"></a>
+<h2 id="runs-test">Runs test<a class="anchor" aria-label="anchor" href="#runs-test"></a>
 </h2>
-<p>The runs test <span class="citation">(Ruiz, López, and Páez <a href="#ref-ruiz2021" role="doc-biblioref">2021</a>)</span> have global and local versions</p>
+<p>The spatial runs test compute the global and local test for spatial independence of a categorical spatial data set <span class="citation">(Ruiz, López, and Páez <a href="#ref-ruiz2021" role="doc-biblioref">2021</a>)</span>.</p>
+<p><strong>Definition of spatial run:</strong></p>
+<p>In this section define the concepts of spatial encoding and runs, and construct the main statistics necessary for testing spatial homogeneity of categorical variables. In order to develop a general theoretical setting, let us consider <span class="math inline">\(\{X_s\}_{s \in S}\)</span> to be the categorical spatial process of interest with Q different categories, where S is a set of coordinates.</p>
+<p><strong>Spatial encoding:</strong></p>
+<p>For a location <span class="math inline">\(s \in S\)</span> denote by <span class="math inline">\(N_s = \{s_1,s_2 ...,s_{n_s}\}\)</span> the set of neighbours according to the interaction scheme W, which are ordered from lesser to higher Euclidean distance with respect to location s.</p>
+<p>The sequence as <span class="math inline">\(X_{s_i} , X_{s_i+1},...,, X_{s_i+r}\)</span> its elements have the same value (or are identified by the same class) is called a <strong>spatial run</strong> at location s of length r.</p>
+<p><strong>The spatial run statistic:</strong></p>
+<p>The total number of runs is defined as: <span class="math display">\[SR^Q=n+\sum_{s \in S}\sum_{j=1}^{n_s}I_j^s\]</span> where <span class="math inline">\(I_j^s = 1 \ if \ X_{s_j-1} \neq X_{s_j} \ \text{and 0 otherwise}\)</span> for <span class="math inline">\(j=1,2,...,n_s\)</span> Following result by the Central Limit Theorem, the asymtotical distribution of <span class="math inline">\(SR^Q\)</span> is:</p>
+<p><span class="math display">\[SR^Q = N(\mu_{SR^Q},\sigma_{SR^Q})\]</span></p>
+<p>In the one-tailed case, we must distinguish the lower-tailed test and the upper-tailed, which are associated with homogeneity and heterogeneity respectively. In the case of the lower-tailed test, the following hypotheses are used:</p>
+<p><span class="math inline">\(H_0:\{X_s\}_{s \in S}\)</span> is i.i.d.</p>
+<p><span class="math inline">\(H_1\)</span>: The spatial distribution of the values of the categorical variable is more homogeneous than under the null hypothesis (according to the fixed association scheme).</p>
+<p>In the upper-tailed test, the following hypotheses are used:</p>
+<p><span class="math inline">\(H_0:\{X_s\}_{s \in S}\)</span> is i.i.d.</p>
+<p><span class="math inline">\(H_1\)</span>: The spatial distribution of the values of the categorical variable is more heterogeneous than under the null hypothesis (according to the fixed association scheme).</p>
+<p>These hypotheses provide a decision rule regarding the degree of homogeneity in the spatial distribution of the values of the spatial categorical random variable.</p>
 <div class="section level3">
 <h3 id="global-runs-test">Global Runs test<a class="anchor" aria-label="anchor" href="#global-runs-test"></a>
 </h3>
@@ -1301,10 +1355,9 @@
 <li>The output of this function is a object of the classes <strong>sprunstest</strong> and <strong>htest</strong>
 </li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="methods-for-spruntest-class">Methods for spruntest class<a class="anchor" aria-label="anchor" href="#methods-for-spruntest-class"></a>
-</h3>
+<div class="section level4">
+<h4 id="methods-for-spruntest-class">Methods for spruntest class<a class="anchor" aria-label="anchor" href="#methods-for-spruntest-class"></a>
+</h4>
 <ul>
 <li>The <strong>spqdep</strong> has two methods for this class  y </li>
 </ul>
@@ -1315,134 +1368,134 @@
 <span class="co">##  version</span>
 <span class="co">## </span>
 <span class="co">## data:  mxf</span>
-<span class="co">## sp.runs test = -3.2264, p-value = 0.001254</span>
+<span class="co">## sp.runs test = -2.8824, p-value = 0.003947</span>
 <span class="co">## alternative hypothesis: two.sided</span>
 <span class="co">## sample estimates:</span>
 <span class="co">##          Total runs     Mean total runs Variance total runs </span>
-<span class="co">##            248.0000            285.5152            135.1986</span></code></pre>
+<span class="co">##            252.0000            285.5152            135.1986</span></code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></code></pre></div>
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="the-local-runs-test">The local Runs test<a class="anchor" aria-label="anchor" href="#the-local-runs-test"></a>
 </h3>
 <ul>
-<li>The function <strong>local.sp.runs.test</strong> obtain the local test based on runs.</li>
+<li>The function <strong>local.sp.runs.test</strong> obtain the local tests based on runs.</li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="asymptotic-version">Asymptotic version<a class="anchor" aria-label="anchor" href="#asymptotic-version"></a>
-</h3>
+<div class="section level4">
+<h4 id="asymptotic-version">Asymptotic version<a class="anchor" aria-label="anchor" href="#asymptotic-version"></a>
+</h4>
 <ul>
 <li>Asymptotic version</li>
 </ul>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lsrq</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/local.sp.runs.test.html">local.sp.runs.test</a></span><span class="op">(</span>fx <span class="op">=</span> <span class="va">fx</span>, listw <span class="op">=</span> <span class="va">listw</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></code></pre></div>
 <ul>
-<li>The  method list the statistic of each observation (point or region)</li>
+<li>The  method list the statistic of each observation (points or regions)</li>
 </ul>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">lsrq</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##     runs.i      E.i     Std.i    z.value    p.value</span>
-<span class="co">## 1        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 2        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 3        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 4        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 5        3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 6        4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 7        2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 8        4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 1        3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 2        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 3        1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 4        4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 5        4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 6        3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 7        3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 8        3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 9        3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 10       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 11       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 12       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 11       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 12       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 13       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
 <span class="co">## 14       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 15       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 16       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 17       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 18       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 19       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 17       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 18       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 19       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 20       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 21       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 22       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 23       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 24       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 24       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 25       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 26       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 26       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 27       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 28       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 29       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 30       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 31       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 32       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 33       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 34       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 35       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 36       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 37       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 38       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 39       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 40       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 41       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 42       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 43       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 44       4 2.855152 0.8722689  1.3124950 0.90532341</span>
-<span class="co">## 45       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 46       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 47       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 48       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 49       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 29       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 30       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 31       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 32       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 33       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 34       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 35       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 36       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 37       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 38       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 39       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 40       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 41       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 42       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 43       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 44       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 45       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 46       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 47       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 48       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 49       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 50       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 51       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 52       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 53       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 54       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 52       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 53       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 54       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 55       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 56       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 56       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 57       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 58       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 59       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 59       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 60       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 61       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 62       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 63       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 64       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 65       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 66       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 67       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 68       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 69       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 63       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 64       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 65       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 66       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 67       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 68       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 69       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 70       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 71       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 71       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 72       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 73       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 74       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 75       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 76       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 73       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 74       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 75       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 76       4 2.855152 0.8722689  1.3124950 0.90532341</span>
 <span class="co">## 77       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 78       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 79       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 79       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 80       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 81       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 81       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 82       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 83       3 2.855152 0.8722689  0.1660594 0.56594492</span>
 <span class="co">## 84       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 85       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 86       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 87       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 88       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 89       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 90       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 91       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 85       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 86       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
+<span class="co">## 87       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 88       4 2.855152 0.8722689  1.3124950 0.90532341</span>
+<span class="co">## 89       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 90       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 91       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 92       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 93       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 94       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 95       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
-<span class="co">## 96       3 2.855152 0.8722689  0.1660594 0.56594492</span>
-<span class="co">## 97       1 2.855152 0.8722689 -2.1268116 0.01671787</span>
-<span class="co">## 98       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 93       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 94       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 95       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 96       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
+<span class="co">## 97       3 2.855152 0.8722689  0.1660594 0.56594492</span>
+<span class="co">## 98       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 99       2 2.855152 0.8722689 -0.9803761 0.16345026</span>
 <span class="co">## 100      3 2.855152 0.8722689  0.1660594 0.56594492</span></code></pre>
 <ul>
@@ -1452,9 +1505,9 @@
 <code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lsrq</span>, sig <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></code></pre></div>
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 </div>
-<div class="section level3">
-<h3 id="monte-carlo-local-runs-test">Monte Carlo local runs test<a class="anchor" aria-label="anchor" href="#monte-carlo-local-runs-test"></a>
-</h3>
+<div class="section level4">
+<h4 id="monte-carlo-local-runs-test">Monte Carlo local runs test<a class="anchor" aria-label="anchor" href="#monte-carlo-local-runs-test"></a>
+</h4>
 <ul>
 <li>The Monte Carlo distribution ot the local test using a sf object</li>
 </ul>
@@ -1475,8 +1528,9 @@
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-21-2.png" width="700"></p>
 </div>
 </div>
+</div>
 <div class="section level2">
-<h2 id="the-scan-test">The scan test<a class="anchor" aria-label="anchor" href="#the-scan-test"></a>
+<h2 id="the-scan-test">The Scan test<a class="anchor" aria-label="anchor" href="#the-scan-test"></a>
 </h2>
 <ul>
 <li><p>Two of the scan tests to identify clusters can be apply to test spatial structure in qualitative spatial processes.</p></li>
@@ -1536,7 +1590,7 @@
 </div>
 </div>
 <div class="section level3">
-<h3 id="scan-multinomial">scan multinomial<a class="anchor" aria-label="anchor" href="#scan-multinomial"></a>
+<h3 id="scan-multinomial">Scan multinomial<a class="anchor" aria-label="anchor" href="#scan-multinomial"></a>
 </h3>
 <ul>
 <li>In case of a spatial process with three or more categories</li>
@@ -1556,10 +1610,9 @@
 <span class="co">##                  H     P     S Sum</span>
 <span class="co">## cases.expect 13.48 14.86 14.66  43</span>
 <span class="co">## cases.observ 16.00  1.00 26.00  43</span></code></pre>
-</div>
-<div class="section level3">
-<h3 id="methods-for-scan-test">Methods for scan test<a class="anchor" aria-label="anchor" href="#methods-for-scan-test"></a>
-</h3>
+<div class="section level4">
+<h4 id="methods-for-scan-test">Methods for scan test<a class="anchor" aria-label="anchor" href="#methods-for-scan-test"></a>
+</h4>
 <ul>
 <li>Two method can be used with <strong>scantest</strong> objects:  and </li>
 </ul>
@@ -1642,13 +1695,11 @@
 <p><img src="spq_userguide_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 </div>
 </div>
+</div>
 <div class="section level2">
 <h2 id="similarity-test">Similarity test<a class="anchor" aria-label="anchor" href="#similarity-test"></a>
 </h2>
 <p>The Farber et al. (2014) paper develop the similarity test</p>
-<div class="section level3">
-<h3 id="simiarity-test">Simiarity test<a class="anchor" aria-label="anchor" href="#simiarity-test"></a>
-</h3>
 <p>The  function calculates the similarity test for both asymptotic distribution and permutational resampling.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_centroid</a></span><span class="op">(</span><span class="va">FastFood.sf</span><span class="op">)</span><span class="op">)</span>
@@ -1664,9 +1715,8 @@
 <span class="co">## Similarity-test = -5.4476, p-value = 5.105e-08</span>
 <span class="co">## alternative hypothesis: two.sided</span></code></pre></div>
 </div>
-</div>
 <div class="section level2">
-<h2 id="join-count-tests">join-count tests<a class="anchor" aria-label="anchor" href="#join-count-tests"></a>
+<h2 id="join-count-tests">Join-count tests<a class="anchor" aria-label="anchor" href="#join-count-tests"></a>
 </h2>
 <ul>
 <li>The functions of the <strong>spdep</strong> R-package have been <strong>wrapped</strong> for Bernoulli and Multinomial distributions. Asymptotic or Monte Carlo distributions (permutations) can be used to evaluate the signification of the tests.</li>
@@ -2687,11 +2737,28 @@
 </div>
 </div>
 <div class="section level2">
+<h2 id="local-join-count-tests">Local join-count tests<a class="anchor" aria-label="anchor" href="#local-join-count-tests"></a>
+</h2>
+<p>This function calculates the local Join Count tests. This function is a wrapper of <strong>local_joincount</strong> in the <strong>rgeoda</strong> package.</p>
+<p>This test can be apply only for binary variables (usually named B and W), and count the number of joins of type B-B where the proportion of observations with B is loewer than half. The interest lies in identifying co-occurrences of uncommon events, i.e., situations where observations that take on the value of B constitute much less than half of the sample.</p>
+<p>The statistic recently introduced by <span class="citation">Anselin and Li (<a href="#ref-anselinLi2019" role="doc-biblioref">2019</a>)</span> is defined as:</p>
+<p><span class="math display">\[BB_i = x_i  \sum_j{w_{ij}x_j}\]</span> where <span class="math inline">\(x_i=1\)</span> if in the localization i the variable <span class="math inline">\(X\)</span> take the value <span class="math inline">\(B\)</span> and 0 in otherwise. The <span class="math inline">\(w_{ij}\)</span> are the elements of a binary spatial weights matrix. The <span class="math inline">\(BB_i\)</span> statistic only count the observations where <span class="math inline">\(x_i=1\)</span>, since for <span class="math inline">\(x_i=0\)</span> the result will always equal zero.</p>
+<p>To apply the local Join Count statistic we consider the example of a regular lattice</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Boots.sf</span><span class="op">)</span>
+<span class="va">listw</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html" class="external-link">poly2nb</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">Boots.sf</span>,<span class="st">"Spatial"</span><span class="op">)</span>, queen <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">formula</span> <span class="op">&lt;-</span> <span class="op">~</span> <span class="va">BW</span>
+<span class="va">ljc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/local.jc.test.html">local.jc.test</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula</span>, data <span class="op">=</span> <span class="va">Boots.sf</span>, case<span class="op">=</span><span class="st">"B"</span>, listw <span class="op">=</span> <span class="va">listw</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <p>Farber, S., Marin, M. R., &amp; Páez, A. (2015). Testing for spatial independence using similarity relations. Geographical Analysis, 47(2), 97-120.</p>
 <p>Paez, A., Lopez, F. A., Menezes, T., Cavalcanti, R., &amp; Pitta, M. G. D. R. (2021). A spatio‐temporal analysis of the environmental correlates of COVID‐19 incidence in Spain. Geographical analysis, 53(3), 397-421.</p>
 <div id="refs" class="references">
+<div id="ref-anselinLi2019">
+<p>Anselin, Luc, and Xun Li. 2019. “Operational Local Join Count Statistics for Cluster Detection.” <em>Journal of Geographical Systems</em> 21 (2): 189–210.</p>
+</div>
 <div id="ref-Kanaroglou2016">
 <p>Kanaroglou, Pavlos. 2016. <em>Spatial Analysis in Health Geography</em>. Routledge. <a href="https://doi.org/10.4324/9781315610252" class="external-link">https://doi.org/10.4324/9781315610252</a>.</p>
 </div>
@@ -2709,6 +2776,9 @@
 </div>
 <div id="ref-Ruiz2012b">
 <p>———. 2012. “Comparison of Thematic Maps Using Symbolic Entropy.” <em>International Journal of Geographical Information Science</em> 26 (3): 413–39. <a href="https://doi.org/10.1080/13658816.2011.586327" class="external-link">https://doi.org/10.1080/13658816.2011.586327</a>.</p>
+</div>
+<div id="ref-upton1985">
+<p>Upton, Graham JG, and Bernard Fingleton. 1985. <em>Spatial Data Analysis by Example: Categorical and Directional Data</em>. Wiley.</p>
 </div>
 </div>
 </div>
