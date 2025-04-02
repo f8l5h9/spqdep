@@ -179,7 +179,6 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">3</span><span class="op">/</span><span class="fl">6</span>,<span class="fl">2</span><span class="op">/</span><span class="fl">6</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span></span>
 <span class="r-in"><span><span class="va">fx</span> <span class="op">&lt;-</span> <span class="fu"><a href="dgp.spq.html">dgp.spq</a></span><span class="op">(</span>listw <span class="op">=</span> <span class="va">listw</span>, p <span class="op">=</span> <span class="va">p</span>, rho <span class="op">=</span> <span class="va">rho</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>neighbour object has 2 sub-graphs</span>
 <span class="r-in"><span><span class="va">srq</span> <span class="op">&lt;-</span> <span class="fu">sp.runs.test</span><span class="op">(</span>fx <span class="op">=</span> <span class="va">fx</span>, listw <span class="op">=</span> <span class="va">listw</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -187,11 +186,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 0.30987, p-value = 0.7567</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -1.0212, p-value = 0.3072</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            289.0000            285.5152            126.4787 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            274.0000            285.5152            127.1573 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-1.png" alt="" width="700" height="433"></span>
@@ -204,11 +203,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 0.30987, p-value = 0.76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -1.0212, p-value = 0.28</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  289.0000                  285.3679                  135.8843 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  274.0000                  285.8662                  131.4518 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-2.png" alt="" width="700" height="433"></span>
@@ -282,11 +281,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -2.3821, p-value = 0.005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -1.2198, p-value = 0.2025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  357.0000                  384.2907                  132.6690 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  371.0000                  386.3609                  138.9046 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-6.png" alt="" width="700" height="433"></span>
@@ -363,11 +362,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.95308, p-value = 0.3406</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 0.039001, p-value = 0.9689</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            621.0000            656.5455           1390.9461 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            658.0000            656.5455           1390.9461 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-10.png" alt="" width="700" height="433"></span>
@@ -383,11 +382,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.95308, p-value = 0.3406</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 0.039001, p-value = 0.9689</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Total runs     Mean total runs Variance total runs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            621.0000            656.5455           1390.9461 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            658.0000            656.5455           1390.9461 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-11.png" alt="" width="700" height="433"></span>
@@ -403,11 +402,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  mxf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -0.95308, p-value = 0.39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = 0.039001, p-value = 0.9833</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  621.0000                  635.0234                 1458.7075 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  658.0000                  632.3244                 1430.1259 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-12.png" alt="" width="700" height="433"></span>
@@ -439,11 +438,11 @@ A test for global and local homogeneity of categorical data based on spatial run
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Runs test of spatial dependence for qualitative data. Boots version</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data:  fx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -4.4599, p-value = 0.3867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sp.runs test = -6.881, p-value = 0.003333</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: two.sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Observed Total runs     Mean total runs boots Variance total runs boots </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  2022.000                  2048.659                 19433.615 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  1657.000                  2050.428                 21820.937 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">srq</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sp.runs.test-14.png" alt="" width="700" height="433"></span>
